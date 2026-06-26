@@ -4,12 +4,20 @@ loadEnv();
 import { Client, GatewayIntentBits, Partials, Events } from "discord.js";
 import { createLogger } from "./logger";
 import { startHealthServer } from "./health";
+import { DeepLApi } from "./deepl";
+import { registerReactionTranslation } from "./translateReaction";
 
 const logger = createLogger();
 
 const token = process.env.DISCORD_BOT_TOKEN;
 if (!token) {
   logger.error("DISCORD_BOT_TOKEN is not set. Copy .env.sample to .env and fill it in.");
+  process.exit(1);
+}
+
+const deeplAuthKey = process.env.DEEPL_AUTH_KEY;
+if (!deeplAuthKey) {
+  logger.error("DEEPL_AUTH_KEY is not set. Copy .env.sample to .env and fill it in.");
   process.exit(1);
 }
 
@@ -37,7 +45,10 @@ client.on(Events.Warn, (w) => {
   logger.warn("client warning:", w);
 });
 
-// Feature handlers (reaction translation, manual UI) are registered in later tasks.
+const deepL = new DeepLApi(deeplAuthKey, logger);
+
+// Flag-reaction translation. The manual translation UI is registered in T4.
+registerReactionTranslation(client, deepL, logger);
 
 // Health HTTP server for Render free tier + GAS keep-alive.
 startHealthServer(logger);
