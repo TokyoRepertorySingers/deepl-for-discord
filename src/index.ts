@@ -6,6 +6,7 @@ import { createLogger } from "./logger";
 import { startHealthServer } from "./health";
 import { DeepLApi } from "./deepl";
 import { registerReactionTranslation } from "./translateReaction";
+import { registerManualTranslation } from "./manualTranslation";
 
 const logger = createLogger();
 
@@ -47,8 +48,9 @@ client.on(Events.Warn, (w) => {
 
 const deepL = new DeepLApi(deeplAuthKey, logger);
 
-// Flag-reaction translation. The manual translation UI is registered in T4.
+// Flag-reaction translation, plus the manual context-menu translation UI.
 registerReactionTranslation(client, deepL, logger);
+registerManualTranslation(client, deepL, logger);
 
 // Health HTTP server for Render free tier + GAS keep-alive.
 startHealthServer(logger);
