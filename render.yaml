@@ -1,0 +1,24 @@
+# Render Blueprint for the free Web Service deployment.
+# Render injects PORT automatically; the health server reads it.
+services:
+  - type: web
+    name: deepl-for-discord
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_GUILD_ID
+        sync: false
+      - key: DEEPL_AUTH_KEY
+        sync: false
+      - key: DEEPL_FREE_API_PLAN
+        value: "1"
+      - key: DEEPL_RUNNER_LANGUAGES
+        value: en,ja,zh,de,fr,it,es,nl,pl,pt,ru
+      - key: LOG_LEVEL
+        value: info

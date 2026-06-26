@@ -5,8 +5,11 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -p .",
-    "start": "npm run build && node lib/index.js",
+    "start": "node lib/index.js",
     "dev": "nodemon --watch \"src/**/*.ts\" --exec \"ts-node\" src/index.ts"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "author": "Tokyo Repertory Singers",
   "license": "MIT",
