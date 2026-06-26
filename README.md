@@ -1,7 +1,7 @@
 # deepl-for-discord
 
 A DeepL translation bot for Discord. Translate any message either by reacting
-with a country-flag emoji or by using the **翻訳** message command.
+with a country-flag emoji or by using the **Translate** message command.
 
 A Discord port of [seratch/deepl-for-slack](https://github.com/seratch/deepl-for-slack),
 reproducing the same workflow on Discord. Built for Tokyo Repertory Singers.
@@ -10,7 +10,7 @@ reproducing the same workflow on Discord. Built for Tokyo Repertory Singers.
 
 - **Flag-reaction translation** — react to a message with a country-flag emoji
   (🇬🇧 🇯🇵 🇫🇷 …) and the bot replies in the channel with the translation.
-- **Manual translation** — right-click a message → Apps → **翻訳**, then pick a
+- **Manual translation** — right-click a message → Apps → **Translate**, then pick a
   target language. The result is shown only to you (ephemeral).
 - Discord markup (mentions, channels, custom emoji, links) is preserved across
   translation.
@@ -33,7 +33,7 @@ reproducing the same workflow on Discord. Built for Tokyo Repertory Singers.
    **Read Message History**, **Add Reactions**. You can generate the invite URL
    from **OAuth2 → URL Generator**.
 
-To make the **翻訳** command appear instantly while developing, set
+To make the **Translate** command appear instantly while developing, set
 `DISCORD_GUILD_ID` to your server id (guild commands update immediately; global
 commands take up to ~1 hour to propagate).
 
@@ -48,7 +48,7 @@ Copy `.env.sample` to `.env` and fill it in:
 | `DISCORD_GUILD_ID` | no | Register the command to one guild for instant updates; leave empty for global. |
 | `DEEPL_AUTH_KEY` | yes | DeepL API key. |
 | `DEEPL_FREE_API_PLAN` | yes | Set to `1` on the DeepL **Free** plan (different endpoint; otherwise 401). |
-| `DEEPL_RUNNER_LANGUAGES` | no | Comma-separated target languages offered by the 翻訳 picker (max 25). Default: `en,ja,zh,de,fr,it,es,nl,pl,pt,ru`. |
+| `DEEPL_RUNNER_LANGUAGES` | no | Comma-separated target languages offered by the Translate picker (max 25). Default: `en,ja,zh,de,fr,it,es,nl,pl,pt,ru`. |
 | `PORT` | no | Port for the HTTP health server. Defaults to `3000`; Render sets this automatically. |
 | `LOG_LEVEL` | no | `debug` \| `info` \| `warn` \| `error`. Default `info`. |
 
